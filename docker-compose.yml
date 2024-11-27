@@ -1,0 +1,13 @@
+
+services:
+  backend:
+    container_name: yourname-backend
+    restart: always
+    command: /app/start.sh
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    env_file:
+      - .env
