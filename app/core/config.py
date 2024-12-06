@@ -1,6 +1,13 @@
+from enum import Enum
 from pydantic_settings import BaseSettings , SettingsConfigDict 
 from pydantic import computed_field, PostgresDsn
 from pydantic_core import MultiHostUrl
+
+# 环境变量 production | staging | local 生产 | 测试 | 本地
+class Env(str, Enum):
+    production = "production"
+    staging = "staging"
+    local = "local"
 
 class Settings(BaseSettings):
     # 从.env文件读取环境变量
@@ -10,6 +17,15 @@ class Settings(BaseSettings):
         extra="ignore"
     )
 
+    # 环境变量
+    ENVIRONMENT: Env = Env.production
+    
+    # JWT 配置
+    SECRET_KEY: str # 从.env文件读取
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 30 # 默认30天
+
+    # 数据库配置
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_SERVER: str

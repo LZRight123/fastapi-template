@@ -75,3 +75,4 @@ Pipfile.lock
 
 # # poetry
 # poetry.lock
+app/learning.py

@@ -7,7 +7,7 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlalchemy.orm import sessionmaker
-from app.models.table import *
+from app.models.tables import *
 
 # 创建数据库引擎
 cpu_count = multiprocessing.cpu_count()
@@ -42,11 +42,8 @@ async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
         class_=AsyncSession,
         expire_on_commit=False
     )
-    try:
-        async with async_session() as session:
+    async with async_session() as session:
             yield session
-    except Exception as e:
-        raise Exception(f"数据库连接失败: {str(e)}")
 
 # 测试数据库连接
 async def test_connection():
@@ -96,4 +93,4 @@ async def init_db() -> None:
     #     user = crud.create_user(session=session, user_create=user_in)
 
 
-SessionDep = Annotated[AsyncSession, Depends(get_async_session)]
+AsyncSessionDep = Annotated[AsyncSession, Depends(get_async_session)]

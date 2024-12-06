@@ -1,9 +1,8 @@
-import os
 from fastapi import APIRouter
 from app.core.config import settings
-from app.models.base.Response import RespModel
+from app.models.response import RespModel
+from app.models.schemas.product import Product
 from . import login, user, ai
-
 
 api_router = APIRouter()
 
@@ -20,6 +19,7 @@ async def root():
     return RespModel(
         data={
             "message": "请检查 path - root",
+            "environment": settings.ENVIRONMENT,
         }
     )
 
@@ -31,5 +31,12 @@ async def base():
         }
     )
 
-api_router.include_router(base_router)
+@base_router.get("/configs")
+async def base():
+    return RespModel(
+        data={
+            "products": [Product(id=type[0], name=type[1], type=Product.ProductType.monthly) for type in Product.ProductType]
+        }   
+    )
 
+api_router.include_router(base_router)

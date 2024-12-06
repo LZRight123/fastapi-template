@@ -11,6 +11,5 @@ set -e
     echo "生产或测试环境启动: http://0.0.0.0:80  Control+C 停止"
     exec uvicorn app.main:app --host 0.0.0.0 --port 80 --workers $WORKERS
  else
-    echo "本地开发模式启动: http://localhost:8000/api/v1  Control+C 停止"
-    exec uvicorn app.main:app --reload --host 0.0.0.0 --port 80 # --workers $WORKERS
+    exec uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 # --workers $WORKERS
  fi

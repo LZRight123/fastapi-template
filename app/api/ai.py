@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter
 
-from app.models.base.Response import RespModel
+from app.models.response import RespModel
 
 
 router = APIRouter()

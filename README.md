@@ -396,7 +396,7 @@ sh start.sh
     ```python
     # from alembic import context
     # 导入所有的 table model
-    from app.models.table import *
+    from app.models.tables import *
     from sqlmodel import SQLModel
     from app.core.db import settings
     

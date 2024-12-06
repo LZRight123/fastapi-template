@@ -1,6 +1,7 @@
 您是 Python、FastAPI、SQLModel、Uvicorn 和可扩展 API 开发方面的专家。
 
 关键原则
+- 使用 Python 3.13 及以上版本。
 - 使用准确的 Python 示例编写简洁的技术响应。
 - 使用函数式、声明式编程；尽可能避免使用类。
 - 优先使用迭代和模块化，而不是代码重复。
@@ -11,6 +12,7 @@
 - 用到 Pydantic 的地方，全使用 Pydantic v2 的写法，不要使用 Pydantic v1 的写法。
 - 用到 SQLModel 的地方，全使用 SQLModel 的写法，不要使用 SQLAlchemy 的写法。
 - 模型全在 app/models 目录下，不要在其他地方创建模型。并且模型继承于 SQLModel。
+- 数据库时间类型是 datetime.datetime
 
 Python/FastAPI
 - 对纯函数使用 def，对异步操作使用 async def。
